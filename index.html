@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coaching Dashboard</title>
+    <style>
+        :root {
+  /* Primitive Color Tokens */
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-cream-50: rgba(252, 252, 249, 1);
+  --color-cream-100: rgba(255, 255, 253, 1);
+  --color-gray-200: rgba(245, 245, 245, 1);
+  --color-gray-300: rgba(167, 169, 169, 1);
+  --color-gray-400: rgba(119, 124, 124, 1);
+  --color-slate-500: rgba(98, 108, 113, 1);
+  --color-brown-600: rgba(94, 82, 64, 1);
+  --color-charcoal-700: rgba(31, 33, 33, 1);
+  --color-charcoal-800: rgba(38, 40, 40, 1);
+  --color-slate-900: rgba(19, 52, 59, 1);
+  --color-teal-300: rgba(50, 184, 198, 1);
+  --color-teal-400: rgba(45, 166, 178, 1);
+  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-600: rgba(29, 116, 128, 1);
+  --color-teal-700: rgba(26, 104, 115, 1);
+  --color-teal-800: rgba(41, 150, 161, 1);
+  --color-red-400: rgba(255, 84, 89, 1);
+  --color-red-500: rgba(192, 21, 47, 1);
+  --color-orange-400: rgba(230, 129, 97, 1);
+  --color-orange-500: rgba(168, 75, 47, 1);
+
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  --color-slate-500-rgb: 98, 108, 113;
+  --color-red-500-rgb: 192, 21, 47;
+  --color-red-400-rgb: 255, 84, 89;
+  --color-orange-500-rgb: 168, 75, 47;
+  --color-orange-400-rgb: 230, 129, 97;
+
+  --color-bg-1: rgba(59, 130, 246, 0.08);
+  --color-bg-2: rgba(245, 158, 11, 0.08);
+  --color-bg-3: rgba(34, 197, 94, 0.08);
+  --color-bg-4: rgba(239, 68, 68, 0.08);
+  --color-bg-5: rgba(147, 51, 234, 0.08);
+  --color-bg-6: rgba(249, 115, 22, 0.08);
+  --color-bg-7: rgba(236, 72, 153, 0.08);
+  --color-bg-8: rgba(6, 182, 212, 0.08);
+
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-primary-active: var(--color-teal-700);
+  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-btn-primary-text: var(--color-cream-50);
+  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-error: var(--color-red-500);
+  --color-success: var(--color-teal-500);
+  --color-warning: var(--color-orange-500);
+  --color-info: var(--color-slate-500);
+  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+  --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+  --focus-ring: 0 0 0 3px var(--color-focus-ring);
+  --focus-outline: 2px solid var(--color-primary);
+  --status-bg-opacity: 0.15;
+  --status-border-opacity: 0.25;
+
+  --color-success-rgb: 33, 128, 141;
+  --color-error-rgb: 192, 21, 47;
+  --color-warning-rgb: 168, 75, 47;
+  --color-info-rgb: 98, 108, 113;
+
+  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 30px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 600;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --letter-spacing-tight: -0.01em;
+
+  --space-0: 0;
+  --space-1: 1px;
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+
+  --radius-sm: 6px;
+  --radius-base: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-gray-400-rgb: 119, 124, 124;
+    --color-teal-300-rgb: 50, 184, 198;
+    --color-gray-300-rgb: 167, 169, 169;
+    --color-gray-200-rgb: 245, 245, 245;
+
+    --color-bg-1: rgba(29, 78, 216, 0.15);
+    --color-bg-2: rgba(180, 83, 9, 0.15);
+    --color-bg-3: rgba(21, 128, 61, 0.15);
+    --color-bg-4: rgba(185, 28, 28, 0.15);
+    --color-bg-5: rgba(107, 33, 168, 0.15);
+    --color-bg-6: rgba(194, 65, 12, 0.15);
+    --color-bg-7: rgba(190, 24, 93, 0.15);
+    --color-bg-8: rgba(8, 145, 178, 0.15);
+
+    --color-background: var(--color-charcoal-700);
+    --color-surface: var(--color-charcoal-800);
+    --color-text: var(--color-gray-200);
+    --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+    --color-primary: var(--color-teal-300);
+    --color-primary-hover: var(--color-teal-400);
+    --color-primary-active: var(--color-teal-800);
+    --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+    --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+    --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-error: var(--color-red-400);
+    --color-success: var(--color-teal-300);
+    --color-warning: var(--color-orange-400);
+    --color-info: var(--color-gray-300);
+    --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+    --color-btn-primary-text: var(--color-slate-900);
+    --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+    --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+    --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+
+    --color-success-rgb: var(--color-teal-300-rgb);
+    --color-error-rgb: var(--color-red-400-rgb);
+    --color-warning-rgb: var(--color-orange-400-rgb);
+    --color-info-rgb: var(--color-gray-300-rgb);
+  }
+}
+
+@font-face {
+  font-family: 'FKGroteskNeue';
+  src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2') format('woff2');
+}
+
+html {
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+.app-header {
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-16) var(--space-24);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.app-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.app-date {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+}
+
+.tab-nav {
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  gap: var(--space-4);
+  padding: 0 var(--space-24);
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  padding: var(--space-16) var(--space-24);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.tab-button:hover {
+  color: var(--color-text);
+  background-color: var(--color-secondary);
+}
+
+.tab-button.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.tab-content {
+  display: none;
+  padding: var(--space-24);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.action-bar {
+  display: flex;
+  gap: var(--space-12);
+  margin-bottom: var(--space-24);
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-10) var(--space-20);
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-standard);
+  border: none;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.btn-secondary {
+  background: var(--color-secondary);
+  color: var(--color-text);
+}
+
+.btn-secondary:hover {
+  background: var(--color-secondary-hover);
+}
+
+.btn-danger {
+  background: var(--color-error);
+  color: var(--color-white);
+}
+
+.btn-danger:hover {
+  background: rgba(var(--color-error-rgb), 0.85);
+}
+
+.btn-small {
+  padding: var(--space-4) var(--space-12);
+  font-size: var(--font-size-sm);
+}
+
+.totals-bar {
+  background-color: var(--color-bg-1);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-16);
+  margin-bottom: var(--space-24);
+  display: flex;
+  gap: var(--space-32);
+  flex-wrap: wrap;
+}
+
+.total-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.total-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.total-value {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+}
+
+.table-container {
+  overflow-x: auto;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+thead {
+  background-color: var(--color-bg-1);
+  border-bottom: 2px solid var(--color-border);
+}
+
+th {
+  padding: var(--space-12);
+  text-align: left;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+td {
+  padding: var(--space-12);
+  border-bottom: 1px solid var(--color-card-border-inner);
+}
+
+tr.row-completed {
+  background-color: rgba(34, 197, 94, 0.08);
+}
+
+tr.row-missed {
+  background-color: rgba(239, 68, 68, 0.08);
+}
+
+tr.row-in-progress {
+  background-color: rgba(147, 151, 155, 0.08);
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-family-base);
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+  outline: var(--focus-outline);
+  border-color: var(--color-primary);
+}
+
+input[type="range"] {
+  width: 80px;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-16);
+  margin-bottom: var(--space-32);
+}
+
+.metric-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-20);
+  box-shadow: var(--shadow-sm);
+}
+
+.metric-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
+  font-weight: var(--font-weight-medium);
+}
+
+.metric-value {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: var(--space-24);
+  margin-bottom: var(--space-32);
+}
+
+.chart-container {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-20);
+  box-shadow: var(--shadow-sm);
+  height: 350px;
+}
+
+.chart-container canvas {
+  max-height: 300px;
+}
+
+.escalation-status {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-20);
+  margin-bottom: var(--space-24);
+}
+
+.escalation-status h3 {
+  margin: 0 0 var(--space-16) 0;
+  font-size: var(--font-size-xl);
+}
+
+.escalation-indicator {
+  display: inline-block;
+  padding: var(--space-8) var(--space-16);
+  border-radius: var(--radius-base);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
+}
+
+.escalation-green {
+  background-color: rgba(34, 197, 94, 0.15);
+  color: var(--color-success);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.escalation-yellow {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: var(--color-warning);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.escalation-red {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: var(--color-error);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.review-section {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-20);
+  margin-bottom: var(--space-16);
+}
+
+.review-section h3 {
+  margin: 0 0 var(--space-12) 0;
+  font-size: var(--font-size-lg);
+}
+
+.review-section textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.contract-document {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-32);
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-md);
+}
+
+.contract-document h2 {
+  text-align: center;
+  margin: 0 0 var(--space-32) 0;
+  font-size: var(--font-size-4xl);
+  color: var(--color-text);
+}
+
+.contract-section {
+  margin-bottom: var(--space-24);
+}
+
+.contract-section h3 {
+  margin: 0 0 var(--space-12) 0;
+  font-size: var(--font-size-xl);
+  color: var(--color-text);
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: var(--space-8);
+}
+
+.contract-section p {
+  margin: var(--space-8) 0;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.contract-section ul {
+  margin: var(--space-8) 0;
+  padding-left: var(--space-24);
+}
+
+.contract-section li {
+  margin: var(--space-4) 0;
+  color: var(--color-text);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  margin-bottom: var(--space-16);
+}
+
+.form-group {
+  margin-bottom: var(--space-16);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--space-8);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+.signature-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-24);
+  margin-top: var(--space-32);
+  padding-top: var(--space-24);
+  border-top: 2px solid var(--color-border);
+}
+
+.signature-box {
+  text-align: center;
+}
+
+.signature-line {
+  border-bottom: 2px solid var(--color-text);
+  margin-bottom: var(--space-8);
+  padding: var(--space-12);
+}
+
+.contract-status {
+  text-align: center;
+  margin-top: var(--space-24);
+  padding: var(--space-16);
+  background-color: var(--color-bg-1);
+  border-radius: var(--radius-base);
+  font-weight: var(--font-weight-semibold);
+}
+
+@media print {
+  .app-header, .tab-nav, .action-bar {
+    display: none;
+  }
+  
+  .contract-document {
+    box-shadow: none;
+    border: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    flex-direction: column;
+    gap: var(--space-12);
+    text-align: center;
+  }
+  
+  .tab-nav {
+    overflow-x: auto;
+  }
+  
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .signature-section {
+    grid-template-columns: 1fr;
+  }
+}
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <h1 class="app-title">Coaching Dashboard</h1>
+        <div class="app-date" id="currentDate"></div>
+    </header>
+
+    <nav class="tab-nav">
+        <button class="tab-button active" data-tab="tracker">Master Tracker</button>
+        <button class="tab-button" data-tab="summary">Weekly Summary</button>
+        <button class="tab-button" data-tab="agreement">Coaching Agreement</button>
+    </nav>
+
+    <main>
+        <!-- TAB 1: Master Tracker -->
+        <div id="tracker" class="tab-content active">
+            <div class="action-bar">
+                <button class="btn btn-primary" onclick="addNewBlock()">+ Add New Block</button>
+                <button class="btn btn-danger" onclick="resetData()">Reset Data</button>
+            </div>
+
+            <div class="totals-bar">
+                <div class="total-item">
+                    <span class="total-label">Total Planned Hours</span>
+                    <span class="total-value" id="totalPlannedHours">0</span>
+                </div>
+                <div class="total-item">
+                    <span class="total-label">Total Completed Hours</span>
+                    <span class="total-value" id="totalCompletedHours">0</span>
+                </div>
+                <div class="total-item">
+                    <span class="total-label">Completion Rate</span>
+                    <span class="total-value" id="completionRate">0%</span>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table id="trackerTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Task</th>
+                            <th>Category</th>
+                            <th>Planned (hrs)</th>
+                            <th>Status</th>
+                            <th>Completed (hrs)</th>
+                            <th>Excuse?</th>
+                            <th>Notes</th>
+                            <th>Motivation</th>
+                            <th>Energy</th>
+                            <th>Coach Check</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="trackerTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB 2: Weekly Summary -->
+        <div id="summary" class="tab-content">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Planned Hours</div>
+                    <div class="metric-value" id="metricPlannedHrs">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Actual Hours</div>
+                    <div class="metric-value" id="metricActualHrs">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Blocks Planned</div>
+                    <div class="metric-value" id="metricBlocksPlanned">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Blocks Completed</div>
+                    <div class="metric-value" id="metricBlocksCompleted">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Excuses Logged</div>
+                    <div class="metric-value" id="metricExcuses">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Avg Motivation</div>
+                    <div class="metric-value" id="metricAvgMotivation">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Missed %</div>
+                    <div class="metric-value" id="metricMissedPct">0%</div>
+                </div>
+            </div>
+
+            <div class="escalation-status">
+                <h3>Escalation Status</h3>
+                <div id="escalationIndicator"></div>
+            </div>
+
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <canvas id="hoursChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="motivationChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="energyChart"></canvas>
+                </div>
+            </div>
+
+            <div class="review-section">
+                <h3>Coach Review Notes</h3>
+                <textarea id="coachNotes" placeholder="Enter coach comments and observations..."></textarea>
+            </div>
+
+            <div class="review-section">
+                <h3>Next Week Action Plan</h3>
+                <textarea id="actionPlan" placeholder="Enter action items and goals for next week..."></textarea>
+            </div>
+        </div>
+
+        <!-- TAB 3: Coaching Agreement -->
+        <div id="agreement" class="tab-content">
+            <div class="action-bar">
+                <button class="btn btn-primary" onclick="printContract()">Print / Export</button>
+            </div>
+
+            <div class="contract-document" id="contractDocument">
+                <h2>COACHING ACCOUNTABILITY AGREEMENT</h2>
+
+                <div class="contract-section">
+                    <h3>1. Parties</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Coach Name:</label>
+                            <input type="text" id="coachName" placeholder="Enter coach name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Coachee Name:</label>
+                            <input type="text" id="coacheeName" placeholder="Enter coachee name">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contract-section">
+                    <h3>2. Coaching Roles &amp; Responsibilities</h3>
+                    <p><strong>Coach agrees to:</strong></p>
+                    <ul>
+                        <li>Provide structured guidance and accountability support</li>
+                        <li>Review weekly progress and provide feedback</li>
+                        <li>Conduct regular check-ins as scheduled</li>
+                        <li>Maintain confidentiality of all shared information</li>
+                    </ul>
+                    <p><strong>Coachee agrees to:</strong></p>
+                    <ul>
+                        <li>Complete planned work blocks as scheduled</li>
+                        <li>Track progress honestly and transparently</li>
+                        <li>Communicate challenges proactively</li>
+                        <li>Accept accountability for commitments made</li>
+                    </ul>
+                </div>
+
+                <div class="contract-section">
+                    <h3>3. Services Provided</h3>
+                    <p>The coach will provide:</p>
+                    <ul>
+                        <li>Weekly progress reviews and feedback sessions</li>
+                        <li>Accountability tracking through the dashboard system</li>
+                        <li>Strategic planning and goal-setting support</li>
+                        <li>Motivation and productivity coaching</li>
+                    </ul>
+                </div>
+
+                <div class="contract-section">
+                    <h3>4. Boundaries &amp; Expectations</h3>
+                    <ul>
+                        <li>Response time: Coach will respond within 24 hours on business days</li>
+                        <li>Communication channels: Email, video calls, and dashboard comments</li>
+                        <li>Session duration: Weekly check-ins of 30-60 minutes</li>
+                        <li>Availability: Coach available during agreed-upon hours</li>
+                    </ul>
+                </div>
+
+                <div class="contract-section">
+                    <h3>5. Payment Terms</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Payment Amount:</label>
+                            <input type="text" id="paymentAmount" placeholder="$X/month">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Payment Due Date:</label>
+                            <input type="text" id="paymentDue" placeholder="1st of each month">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contract-section">
+                    <h3>6. Accountability &amp; Escalation System</h3>
+                    <p><strong>Green Status (0-1 missed blocks):</strong> On track, positive reinforcement</p>
+                    <p><strong>Yellow Status (2 missed blocks):</strong> Warning issued, additional check-in scheduled</p>
+                    <p><strong>Red Status (3+ missed blocks):</strong> Penalty phase activated, intensive review required</p>
+                    <p>Excuses will be logged and reviewed. Repeated patterns will trigger escalation protocols.</p>
+                </div>
+
+                <div class="contract-section">
+                    <h3>7. Exit Clause</h3>
+                    <p>Either party may terminate this agreement with 14 days written notice. Upon termination, all outstanding payments must be settled and final progress report delivered.</p>
+                </div>
+
+                <div class="contract-section">
+                    <h3>8. Timeline &amp; Deadlines</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Start Date:</label>
+                            <input type="date" id="startDate">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Final Submission Deadline:</label>
+                            <input type="date" id="finalDeadline">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="signature-section">
+                    <div class="signature-box">
+                        <label class="form-label">Coach Signature:</label>
+                        <input type="text" id="coachSignature" class="signature-line" placeholder="Type name to sign">
+                        <div class="form-label">Date: <span id="coachSignDate"></span></div>
+                    </div>
+                    <div class="signature-box">
+                        <label class="form-label">Coachee Signature:</label>
+                        <input type="text" id="coacheeSignature" class="signature-line" placeholder="Type name to sign">
+                        <div class="form-label">Date: <span id="coacheeSignDate"></span></div>
+                    </div>
+                </div>
+
+                <div class="contract-status">
+                    <strong>Contract Status:</strong> <span id="contractStatus">Pending Signatures</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Global data storage
+        let workBlocks = [];
+        let charts = {};
+
+        // Initialize app
+        function init() {
+            displayCurrentDate();
+            loadSampleData();
+            setupEventListeners();
+            renderTrackerTable();
+            updateSummary();
+        }
+
+        function displayCurrentDate() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', options);
+        }
+
+        function loadSampleData() {
+            workBlocks = [
+                {
+                    id: Date.now() + 1,
+                    date: '2025-11-15',
+                    time: '10:00–12:00',
+                    task: 'Write Introduction',
+                    category: 'Writing',
+                    plannedDuration: 2,
+                    status: 'Completed',
+                    completedDuration: 2,
+                    excuse: false,
+                    notes: 'Got it done on time',
+                    motivation: 7,
+                    energy: 'M',
+                    coachCheckin: 'Y'
+                },
+                {
+                    id: Date.now() + 2,
+                    date: '2025-11-16',
+                    time: '09:00–11:00',
+                    task: 'Read 3 source papers',
+                    category: 'Research',
+                    plannedDuration: 2,
+                    status: 'Missed',
+                    completedDuration: 0,
+                    excuse: true,
+                    notes: 'Slept late, missed morning',
+                    motivation: 4,
+                    energy: 'L',
+                    coachCheckin: 'N'
+                }
+            ];
+        }
+
+        function setupEventListeners() {
+            // Tab navigation
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabName = button.getAttribute('data-tab');
+                    switchTab(tabName);
+                });
+            });
+
+            // Contract signature tracking
+            document.getElementById('coachSignature').addEventListener('input', updateContractStatus);
+            document.getElementById('coacheeSignature').addEventListener('input', updateContractStatus);
+        }
+
+        function switchTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+
+            // Update summary when switching to that tab
+            if (tabName === 'summary') {
+                updateSummary();
+            }
+        }
+
+        function addNewBlock() {
+            const newBlock = {
+                id: Date.now(),
+                date: new Date().toISOString().split('T')[0],
+                time: '',
+                task: '',
+                category: '',
+                plannedDuration: 0,
+                status: 'In Progress',
+                completedDuration: 0,
+                excuse: false,
+                notes: '',
+                motivation: 5,
+                energy: 'M',
+                coachCheckin: 'N'
+            };
+            workBlocks.push(newBlock);
+            renderTrackerTable();
+        }
+
+        function deleteBlock(id) {
+            if (confirm('Are you sure you want to delete this work block?')) {
+                workBlocks = workBlocks.filter(block => block.id !== id);
+                renderTrackerTable();
+                updateSummary();
+            }
+        }
+
+        function renderTrackerTable() {
+            const tbody = document.getElementById('trackerTableBody');
+            tbody.innerHTML = '';
+
+            workBlocks.forEach(block => {
+                const row = document.createElement('tr');
+                row.className = getRowClass(block.status);
+                row.innerHTML = `
+                    <td><input type="date" value="${block.date}" onchange="updateBlock(${block.id}, 'date', this.value)"></td>
+                    <td><input type="text" value="${block.time}" onchange="updateBlock(${block.id}, 'time', this.value)" placeholder="HH:MM-HH:MM"></td>
+                    <td><input type="text" value="${block.task}" onchange="updateBlock(${block.id}, 'task', this.value)" placeholder="Task description"></td>
+                    <td><input type="text" value="${block.category}" onchange="updateBlock(${block.id}, 'category', this.value)" placeholder="Category"></td>
+                    <td><input type="number" value="${block.plannedDuration}" onchange="updateBlock(${block.id}, 'plannedDuration', parseFloat(this.value))" step="0.5" min="0" style="width: 70px;"></td>
+                    <td>
+                        <select onchange="updateBlock(${block.id}, 'status', this.value)">
+                            <option value="Completed" ${block.status === 'Completed' ? 'selected' : ''}>Completed</option>
+                            <option value="Missed" ${block.status === 'Missed' ? 'selected' : ''}>Missed</option>
+                            <option value="In Progress" ${block.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
+                        </select>
+                    </td>
+                    <td><input type="number" value="${block.completedDuration}" onchange="updateBlock(${block.id}, 'completedDuration', parseFloat(this.value))" step="0.5" min="0" style="width: 70px;"></td>
+                    <td style="text-align: center;"><input type="checkbox" ${block.excuse ? 'checked' : ''} onchange="updateBlock(${block.id}, 'excuse', this.checked)"></td>
+                    <td><input type="text" value="${block.notes}" onchange="updateBlock(${block.id}, 'notes', this.value)" placeholder="Notes"></td>
+                    <td>
+                        <input type="range" min="1" max="10" value="${block.motivation}" onchange="updateBlock(${block.id}, 'motivation', parseInt(this.value)); this.nextElementSibling.textContent = this.value;">
+                        <span>${block.motivation}</span>
+                    </td>
+                    <td>
+                        <select onchange="updateBlock(${block.id}, 'energy', this.value)">
+                            <option value="L" ${block.energy === 'L' ? 'selected' : ''}>Low</option>
+                            <option value="M" ${block.energy === 'M' ? 'selected' : ''}>Med</option>
+                            <option value="H" ${block.energy === 'H' ? 'selected' : ''}>High</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select onchange="updateBlock(${block.id}, 'coachCheckin', this.value)">
+                            <option value="Y" ${block.coachCheckin === 'Y' ? 'selected' : ''}>Y</option>
+                            <option value="N" ${block.coachCheckin === 'N' ? 'selected' : ''}>N</option>
+                        </select>
+                    </td>
+                    <td><button class="btn btn-danger btn-small" onclick="deleteBlock(${block.id})">Delete</button></td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            updateTotals();
+        }
+
+        function getRowClass(status) {
+            if (status === 'Completed') return 'row-completed';
+            if (status === 'Missed') return 'row-missed';
+            if (status === 'In Progress') return 'row-in-progress';
+            return '';
+        }
+
+        function updateBlock(id, field, value) {
+            const block = workBlocks.find(b => b.id === id);
+            if (block) {
+                block[field] = value;
+                renderTrackerTable();
+                updateSummary();
+            }
+        }
+
+        function updateTotals() {
+            const totalPlanned = workBlocks.reduce((sum, block) => sum + (parseFloat(block.plannedDuration) || 0), 0);
+            const totalCompleted = workBlocks.reduce((sum, block) => sum + (parseFloat(block.completedDuration) || 0), 0);
+            const completionRate = totalPlanned > 0 ? Math.round((totalCompleted / totalPlanned) * 100) : 0;
+
+            document.getElementById('totalPlannedHours').textContent = totalPlanned.toFixed(1);
+            document.getElementById('totalCompletedHours').textContent = totalCompleted.toFixed(1);
+            document.getElementById('completionRate').textContent = completionRate + '%';
+        }
+
+        function updateSummary() {
+            // Calculate metrics
+            const totalPlanned = workBlocks.reduce((sum, block) => sum + (parseFloat(block.plannedDuration) || 0), 0);
+            const totalCompleted = workBlocks.reduce((sum, block) => sum + (parseFloat(block.completedDuration) || 0), 0);
+            const blocksPlanned = workBlocks.length;
+            const blocksCompleted = workBlocks.filter(b => b.status === 'Completed').length;
+            const excusesLogged = workBlocks.filter(b => b.excuse).length;
+            const missedBlocks = workBlocks.filter(b => b.status === 'Missed').length;
+            const missedPct = blocksPlanned > 0 ? Math.round((missedBlocks / blocksPlanned) * 100) : 0;
+            
+            const motivationValues = workBlocks.map(b => b.motivation).filter(m => m > 0);
+            const avgMotivation = motivationValues.length > 0 
+                ? (motivationValues.reduce((a, b) => a + b, 0) / motivationValues.length).toFixed(1)
+                : 0;
+
+            // Update metric cards
+            document.getElementById('metricPlannedHrs').textContent = totalPlanned.toFixed(1);
+            document.getElementById('metricActualHrs').textContent = totalCompleted.toFixed(1);
+            document.getElementById('metricBlocksPlanned').textContent = blocksPlanned;
+            document.getElementById('metricBlocksCompleted').textContent = blocksCompleted;
+            document.getElementById('metricExcuses').textContent = excusesLogged;
+            document.getElementById('metricAvgMotivation').textContent = avgMotivation;
+            document.getElementById('metricMissedPct').textContent = missedPct + '%';
+
+            // Update escalation status
+            updateEscalationStatus(missedBlocks);
+
+            // Update charts
+            updateCharts();
+        }
+
+        function updateEscalationStatus(missedBlocks) {
+            const indicator = document.getElementById('escalationIndicator');
+            let statusClass, statusText;
+
+            if (missedBlocks <= 1) {
+                statusClass = 'escalation-green';
+                statusText = `✓ Green Status - On Track (${missedBlocks} missed block${missedBlocks !== 1 ? 's' : ''})`;
+            } else if (missedBlocks === 2) {
+                statusClass = 'escalation-yellow';
+                statusText = `⚠ Yellow Status - Warning (${missedBlocks} missed blocks)`;
+            } else {
+                statusClass = 'escalation-red';
+                statusText = `✗ Red Status - Penalty Phase (${missedBlocks} missed blocks)`;
+            }
+
+            indicator.innerHTML = `<div class="escalation-indicator ${statusClass}">${statusText}</div>`;
+        }
+
+        function updateCharts() {
+            // Destroy existing charts
+            Object.values(charts).forEach(chart => chart?.destroy());
+
+            // Hours comparison chart
+            const totalPlanned = workBlocks.reduce((sum, block) => sum + (parseFloat(block.plannedDuration) || 0), 0);
+            const totalCompleted = workBlocks.reduce((sum, block) => sum + (parseFloat(block.completedDuration) || 0), 0);
+
+            const hoursCtx = document.getElementById('hoursChart').getContext('2d');
+            charts.hours = new Chart(hoursCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Planned Hours', 'Actual Hours'],
+                    datasets: [{
+                        label: 'Hours',
+                        data: [totalPlanned, totalCompleted],
+                        backgroundColor: ['#1FB8CD', '#FFC185']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Planned vs Actual Hours'
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Motivation over time chart
+            const motivationData = workBlocks.map(b => ({
+                x: b.date,
+                y: b.motivation
+            })).sort((a, b) => a.x.localeCompare(b.x));
+
+            const motivationCtx = document.getElementById('motivationChart').getContext('2d');
+            charts.motivation = new Chart(motivationCtx, {
+                type: 'line',
+                data: {
+                    labels: motivationData.map(d => d.x),
+                    datasets: [{
+                        label: 'Motivation Level',
+                        data: motivationData.map(d => d.y),
+                        borderColor: '#1FB8CD',
+                        backgroundColor: 'rgba(31, 184, 205, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Motivation Over Time'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10
+                        }
+                    }
+                }
+            });
+
+            // Energy levels pie chart
+            const energyCounts = {
+                L: workBlocks.filter(b => b.energy === 'L').length,
+                M: workBlocks.filter(b => b.energy === 'M').length,
+                H: workBlocks.filter(b => b.energy === 'H').length
+            };
+
+            const energyCtx = document.getElementById('energyChart').getContext('2d');
+            charts.energy = new Chart(energyCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Low', 'Medium', 'High'],
+                    datasets: [{
+                        data: [energyCounts.L, energyCounts.M, energyCounts.H],
+                        backgroundColor: ['#B4413C', '#FFC185', '#1FB8CD']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Energy Levels Breakdown'
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateContractStatus() {
+            const coachSig = document.getElementById('coachSignature').value.trim();
+            const coacheeSig = document.getElementById('coacheeSignature').value.trim();
+            const statusEl = document.getElementById('contractStatus');
+            const today = new Date().toLocaleDateString('en-US');
+
+            if (coachSig && coacheeSig) {
+                statusEl.textContent = 'Active';
+                document.getElementById('coachSignDate').textContent = today;
+                document.getElementById('coacheeSignDate').textContent = today;
+            } else {
+                statusEl.textContent = 'Pending Signatures';
+            }
+        }
+
+        function printContract() {
+            window.print();
+        }
+
+        function resetData() {
+            if (confirm('Are you sure you want to reset all data? This cannot be undone.')) {
+                workBlocks = [];
+                renderTrackerTable();
+                updateSummary();
+                
+                // Clear contract fields
+                document.getElementById('coachName').value = '';
+                document.getElementById('coacheeName').value = '';
+                document.getElementById('paymentAmount').value = '';
+                document.getElementById('paymentDue').value = '';
+                document.getElementById('startDate').value = '';
+                document.getElementById('finalDeadline').value = '';
+                document.getElementById('coachSignature').value = '';
+                document.getElementById('coacheeSignature').value = '';
+                document.getElementById('coachNotes').value = '';
+                document.getElementById('actionPlan').value = '';
+                
+                updateContractStatus();
+            }
+        }
+
+        // Initialize the app when page loads
+        init();
+    </script>
+</body>
+</html>
